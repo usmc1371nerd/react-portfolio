@@ -22,7 +22,7 @@ export default class PortfolioContainer extends Component{
                 {title:"SwingAway"}
             ]
         }
-        
+        // Bind
         this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this)
     }
 
