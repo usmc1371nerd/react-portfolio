@@ -14,12 +14,13 @@ export default class PortfolioContainer extends Component{
 
         this.state = {
             pageTitle:"Welcome to my Portfolio",
+            isLoading: false,
             data:[
                
                 {title:"Quip", catergory: "eCommerce"},
                 {title:"Eventbrite", catergory:"Scheduling"},
                 {title:"Ministry Safe",catergory: "eCommerce"}, 
-                {title:"SwingAway", catergory:"Scheduling"}
+                {title:"SwingAway", catergory:"Enterprise"}
             ]
         }
         
@@ -43,11 +44,24 @@ export default class PortfolioContainer extends Component{
         });
     }
 
-    
+    // added buttons
     render(){
+        if (this.state.isLoading) {
+            return <div>Loading...</div>
+        }
         return(
             <div>
                 <h2>{this.state.pageTitle}</h2>
+
+                <button onClick={()=> this.handleFilter('eCommerce')}>
+                    eCommerce
+                    </button>
+                <button onClick={()=> this.handleFilter('Scheduling')}>
+                    Scheduling
+                    </button>
+                <button onClick={()=> this.handleFilter('Enterprise')}>
+                    Enterprise
+                    </button>
 
               {this.portfolioItems()}
              
