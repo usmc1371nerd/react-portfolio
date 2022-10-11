@@ -17,10 +17,10 @@ export default class PortfolioContainer extends Component{
             isLoading: false,
             data:[
                
-                {title:"Quip", catergory: "eCommerce"},
-                {title:"Eventbrite", catergory:"Scheduling"},
-                {title:"Ministry Safe",catergory: "eCommerce"}, 
-                {title:"SwingAway", catergory:"Enterprise"}
+                {title:"Quip", catergory: "eCommerce", slug:'quip'},
+                {title:"Eventbrite", catergory:"Scheduling" , slug: 'eventbrite'},
+                {title:"Ministry Safe",catergory: "eCommerce", slug: 'ministry-safe'}, 
+                {title:"SwingAway", catergory:"Enterprise", slug:'swingaway'}
             ]
         }
         
@@ -40,7 +40,7 @@ export default class PortfolioContainer extends Component{
     portfolioItems(){
 
         return this.state.data.map(item => {
-            return <PortfolioItem title={item.title} url={"google.com"}/>; 
+            return <PortfolioItem title={item.title} url={"google.com"} slug={item.slug}/>; 
         });
     }
 
