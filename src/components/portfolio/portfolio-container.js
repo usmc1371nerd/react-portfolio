@@ -1,5 +1,5 @@
 import React, { Component} from "react";
-
+import axios from 'axios';
 
 import PortfolioItem from "./portfolio-item";
 
@@ -15,16 +15,11 @@ export default class PortfolioContainer extends Component{
         this.state = {
             pageTitle:"Welcome to my Portfolio",
             isLoading: false,
-            data:[
-               
-                {title:"Quip", catergory: "eCommerce", slug:'quip'},
-                {title:"Eventbrite", catergory:"Scheduling" , slug: 'eventbrite'},
-                {title:"Ministry Safe",catergory: "eCommerce", slug: 'ministry-safe'}, 
-                {title:"SwingAway", catergory:"Enterprise", slug:'swingaway'}
-            ]
-        }
+            data:[]
+        };
         
         this.handleFilter = this.handleFilter.bind(this);
+       
     }
     // filter
     handleFilter(filter) {
@@ -37,18 +32,45 @@ export default class PortfolioContainer extends Component{
         
     }
 
-    portfolioItems(){
-
-        return this.state.data.map(item => {
-            return <PortfolioItem title={item.title} url={"google.com"} slug={item.slug}/>; 
+    getPortfolioItems(){ 
+    
+        axios.get('https://jamesdumas.devcamp.space/portfolio/portfolio_items')
+          .then( response => {
+          // handle success
+        //   console.log(response);
+          this.setState({
+            data: response.data.portfolio_items
+          });
+        })
+        .catch(error => {
+          // handle error
+          console.log(error);
+        })
+        .finally(function () {
+          // always executed
         });
+      
+      
     }
 
-    // added buttons
+    portfolioItems(){
+        
+        return this.state.data.map(item => {
+            return <PortfolioItem title={item.name} url={item.url} slug={item.id}/>; 
+        });
+    }
+ 
+    componentDidMount(){
+    this.getPortfolioItems();
+    }
+
     render(){
         if (this.state.isLoading) {
             return <div>Loading...</div>
         }
+
+     
+
         return(
             <div>
                 <h2>{this.state.pageTitle}</h2>
