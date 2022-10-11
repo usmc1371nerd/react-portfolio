@@ -56,7 +56,14 @@ export default class PortfolioContainer extends Component{
     portfolioItems(){
         
         return this.state.data.map(item => {
-            return <PortfolioItem title={item.name} url={item.url} slug={item.id}/>; 
+            debugger;
+            return ( <PortfolioItem 
+            key={item.id} 
+            title={item.id}
+            url={item.url} 
+            slug={item.id}
+            />
+            );
         });
     }
  
