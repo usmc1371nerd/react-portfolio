@@ -4,3 +4,8 @@ body {
    font-family: 'Roboto Slab', serif;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    
+}
