@@ -11,19 +11,23 @@ export default class NavigationComponent extends Component {
     render() {
         return (
 
-            <div>
-                <NavLink exact to="/">
-                    Home
-                </NavLink>
-                <NavLink to="/about-me"> About</NavLink>
+            <div className="nav-wrapper">
                 
-                <NavLink to="/contact"> Contact</NavLink>
+                <div className="left-side">
+                
+                    <div className="nav-link-wrapper">
+                    <NavLink exact to="/">Home</NavLink>
+                    </div>
 
+                <NavLink to="/about-me"> About</NavLink>
+                <NavLink to="/contact"> Contact</NavLink>
                 <NavLink to ="/blog"> Blog</NavLink>
 
 
                 {false ? <button> Add Blog</button> : ''}
+                </div>
 
+                <div className="right-side">James Dumas</div>
             </div>
 
         )
