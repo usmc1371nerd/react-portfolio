@@ -18,13 +18,19 @@ export default class NavigationComponent extends Component {
                     <div className="nav-link-wrapper">
                     <NavLink exact to="/">Home</NavLink>
                     </div>
+                       
+                    <div className="nav-link-wrapper">
+                    <NavLink to="/about-me"> About</NavLink>
+                    </div>
+                        
+                    <div className="nav-link-wrapper">
+                    <NavLink to="/contact"> Contact</NavLink>
+                    </div>
 
-                <NavLink to="/about-me"> About</NavLink>
-                <NavLink to="/contact"> Contact</NavLink>
-                <NavLink to ="/blog"> Blog</NavLink>
+                    <div className="nav-link-wrapper">
+                    <NavLink to ="/blog"> Blog</NavLink>
+                    </div>
 
-
-                {false ? <button> Add Blog</button> : ''}
                 </div>
 
                 <div className="right-side">James Dumas</div>
