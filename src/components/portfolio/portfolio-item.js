@@ -8,6 +8,8 @@ export default function(props) {
     
     return (
         <div>
+            <img src={thumb_image_url}/>
+            <img src={logo}/>
             <div>{description}</div>
             <Link to={`/portfolio/${id}`}>Link</Link>
         </div>
