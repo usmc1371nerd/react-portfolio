@@ -18,6 +18,8 @@
 
   
 
+
+
     a {
         color: $grey;
         text-decoration: none;
@@ -35,10 +37,15 @@
        border-bottom:1px solid black ; 
     }
 
+   
+   
+   
     .nav-link-active {
 
         border-bottom:1px solid black ;
-        color:black;
+        color:black
+    
+       
 
      }
 
