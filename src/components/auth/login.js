@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
+// import { response } from 'express';
 export default class Login extends Component {
     constructor(props) {
     super(props);
 
     this.state={
         email:"",
-        password:""
+        password:"",
+        errorText:""
 
     };
 
@@ -17,11 +19,42 @@ export default class Login extends Component {
 }
 handleChange(event) {
     this.setState({
-       [event.target.name]: event.target.value
+       [event.target.name]: event.target.value,
+
+       errorText:""
     });
 }
 handleSubmit(event) {
-    console.log("Handle submit, event");
+   axios.post("https://api.devcamp.space/sessions",
+   {
+    client:{
+        email: this.state.email,
+        password: this.state.password
+    }
+   },
+
+   { withCredentials: true}
+   )
+   
+   .then(response => {
+    if (response.data.status === 'created') {
+     this.props.handleSuccessfulAuth();
+   } else { 
+        this.setState({
+            errorText:"Wrong email or password"
+        });
+        this.props.handleUnsuccessfulAuth();
+    }
+   }).catch(error => {
+    console.log("something happen", error);
+    this.setState({
+        errorText: "An error occurred"
+    });
+    this.props.handleUnsuccessfulAuth();
+   });
+   
+   
+    event.preventDefault();
 }
 
     render() {
@@ -29,8 +62,10 @@ handleSubmit(event) {
             <div>
                 <h1>LOGIN TO ACCESS YOUR DASHBOARD</h1>
 
-                <h2>{this.state.email}</h2>
-                <h2>{this.state.password}</h2>
+            <div>{this.state.errorText}</div>
+
+                {/* <h2>{this.state.email}</h2>
+                <h2>{this.state.password}</h2> */}
 
                <form onSubmit={this.handleSubmit}>
                 <input 
